@@ -1,7 +1,7 @@
 #import <React/RCTBridgeModule.h>
-#import "React/RCTEventEmitter.h"
+#import <React/RCTEventEmitter.h>
 
-@interface RCT_EXTERN_MODULE(CloudPreventCapture, NSObject)
+@interface RCT_EXTERN_MODULE(CloudPreventCapture, RCTEventEmitter)
 
 RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
                  withResolver:(RCTPromiseResolveBlock)resolve
