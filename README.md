@@ -11,11 +11,15 @@ npm install react-native-cloud-prevent-capture
 ## Usage
 
 ```js
-import { multiply } from "react-native-cloud-prevent-capture";
+import CloudPreventCaptureModule from "react-native-cloud-prevent-capture";
+import { multiply, startPreventCapture, stopPreventCapture } from "react-native-cloud-prevent-capture";
 
 // ...
 
 const result = await multiply(3, 7);
+
+
+const { ON_SCREEN_CAPTURE, ON_SCREENSHOT } = CloudPreventCaptureModule.getConstants();
 ```
 
 ## Contributing

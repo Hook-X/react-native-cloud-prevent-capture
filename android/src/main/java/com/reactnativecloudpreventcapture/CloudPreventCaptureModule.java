@@ -22,6 +22,13 @@ public class CloudPreventCaptureModule extends ReactContextBaseJavaModule {
         return NAME;
     }
 
+    @Override
+    public Map<String, Object> getConstants() {
+       final Map<String, Object> constants = new HashMap<>();
+       constants.put("ON_SCREENSHOT", "ON_SCREENSHOT");
+       constants.put("ON_SCREEN_CAPTURE", "ON_SCREEN_CAPTURE");
+       return constants;
+    }
 
     // Example method
     // See https://reactnative.dev/docs/native-modules-android
