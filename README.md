@@ -1,6 +1,6 @@
 # react-native-cloud-prevent-capture
 
-Package to prevent screen recording and screenshots on android
+Package to prevent screen recording(on both platform ios and android) and screenshots (only on android)
 
 ## Installation
 
