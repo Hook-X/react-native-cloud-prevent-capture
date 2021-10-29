@@ -7,6 +7,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
+import android.view.WindowManager;
 
 @ReactModule(name = CloudPreventCaptureModule.NAME)
 public class CloudPreventCaptureModule extends ReactContextBaseJavaModule {
@@ -35,6 +36,27 @@ public class CloudPreventCaptureModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void multiply(int a, int b, Promise promise) {
         promise.resolve(a * b);
+    }
+
+    @ReactMethod
+    public void startPreventingRecording(Promise promise) {
+      try {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        promise.resolve(true);
+      }
+      catch(Exception e) {
+        promise.reject("Start prevent recording error", e);
+      }
+    }
+
+    @ReactMethod
+    public void stopPreventingRecording(Promise promise) {
+      try {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        promise.resolve(true);
+      } catch(Exception e) {
+        promise.reject("Stop prevent recording error", e);
+      }
     }
 
     public static native int nativeMultiply(int a, int b);

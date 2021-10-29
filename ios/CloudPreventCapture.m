@@ -6,5 +6,10 @@
 RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(startPreventingRecording: (RCTPromiseResolveBlock)resolve
+                                            rejecter: (RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(stopPreventingRecording: (RCTPromiseResolveBlock)resolve
+                                           rejecter: (RCTPromiseRejectBlock)reject)
 
 @end

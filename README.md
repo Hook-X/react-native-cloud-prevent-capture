@@ -18,6 +18,18 @@ import { multiply, startPreventCapture, stopPreventCapture } from "react-native-
 
 const result = await multiply(3, 7);
 
+//Launch this on pages where yo want to prevent recording and screenshots
+try {
+  const result = await startPreventCapture();
+} catch (err) {
+  console.log("%c++ START PREVENT ERROR", "background: red", err);
+}
+// When you leave secure page
+try {
+  const result = await stopPreventCapture();
+} catch (err) {
+  console.log("%c++ STOP PREVENT ERROR", "background: red", err);
+}
 
 const { ON_SCREEN_CAPTURE, ON_SCREENSHOT } = CloudPreventCaptureModule.getConstants();
 ```

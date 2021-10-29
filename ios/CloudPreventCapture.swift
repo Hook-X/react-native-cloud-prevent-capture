@@ -20,4 +20,46 @@ class CloudPreventCapture: RCTEventEmitter {
     override static func requiresMainQueueSetup() -> Bool {
       return true;
     }
+
+    @objc func startPreventingRecording(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+      do {
+        NotificationCenter.default.addObserver(self, selector: #selector(didDetectRecording), name: UIScreen.capturedDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didDetectScreenshot), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
+        resolve(true)
+      } catch let error {
+        reject("START ERROR", "Could not start prevent recording", error)
+      }
+    }
+
+    @objc private func didDetectRecording() {
+        DispatchQueue.main.async {
+          if #available(iOS 11, *) {
+            if UIScreen.main.isCaptured {
+                    sendEvent(withName: "ON_SCREEN_CAPTURE", body: ["isCaptured": true])
+                } else {
+                    sendEvent(withName: "ON_SCREEN_CAPTURE", body: ["isCaptured": false])
+                }
+          }
+        }
+    }
+
+    @objc func stopPreventingRecording(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+      do {
+        NotificationCenter.default.removeObserver(self as! NSObject, forKeyPath: UIScreen.capturedDidChangeNotification.rawValue)
+        NotificationCenter.default.removeObserver(self as! NSObject, forKeyPath: UIApplication.userDidTakeScreenshotNotification.rawValue)
+        resolve(true)
+      } catch let error {
+        reject("STOP ERROR", "Could not stop prevent recording", error)
+      }
+    }
+
+//    @objc func startPreventingScreenshot() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(didDetectScreenshot), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
+//    }
+
+    @objc private func didDetectScreenshot() {
+        DispatchQueue.main.async {
+            sendEvent(withName: "ON_SCREENSHOT", body: ["isScreenShot": true])
+        }
+    }
 }

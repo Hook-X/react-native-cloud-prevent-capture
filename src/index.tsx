@@ -20,3 +20,11 @@ const CloudPreventCapture = NativeModules.CloudPreventCapture
 export function multiply(a: number, b: number): Promise<number> {
   return CloudPreventCapture.multiply(a, b);
 }
+export function startPreventingRecording(): Promise<boolean> {
+  return CloudPreventCapture.startPreventingRecording();
+}
+export function stopPreventingRecording(): Promise<boolean> {
+  return CloudPreventCapture.stopPreventingRecording();
+}
+export const { ON_SCREENSHOT, ON_SCREEN_CAPTURE } =
+  CloudPreventCapture.getConstants();
