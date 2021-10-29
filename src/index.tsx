@@ -31,3 +31,11 @@ export const CloudPreventCaptureEvents = new NativeEventEmitter(
 );
 export const { ON_SCREENSHOT, ON_SCREEN_CAPTURE } =
   CloudPreventCapture.getConstants();
+
+export type CloudScreenCaptureEvent = {
+  isCaptured: boolean;
+};
+
+export type CloudScreenShotEvent = {
+  isScreenShot: boolean;
+};
