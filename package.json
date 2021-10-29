@@ -1,6 +1,6 @@
 {
   "name": "react-native-cloud-prevent-capture",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Package to prevent screen recording and screenshots on android",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
