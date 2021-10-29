@@ -35,9 +35,9 @@ class CloudPreventCapture: RCTEventEmitter {
         DispatchQueue.main.async {
           if #available(iOS 11, *) {
             if UIScreen.main.isCaptured {
-                    sendEvent(withName: "ON_SCREEN_CAPTURE", body: ["isCaptured": true])
+                    self.sendEvent(withName: "ON_SCREEN_CAPTURE", body: ["isCaptured": true])
                 } else {
-                    sendEvent(withName: "ON_SCREEN_CAPTURE", body: ["isCaptured": false])
+                    self.sendEvent(withName: "ON_SCREEN_CAPTURE", body: ["isCaptured": false])
                 }
           }
         }
@@ -59,7 +59,7 @@ class CloudPreventCapture: RCTEventEmitter {
 
     @objc private func didDetectScreenshot() {
         DispatchQueue.main.async {
-            sendEvent(withName: "ON_SCREENSHOT", body: ["isScreenShot": true])
+            self.sendEvent(withName: "ON_SCREENSHOT", body: ["isScreenShot": true])
         }
     }
 }
