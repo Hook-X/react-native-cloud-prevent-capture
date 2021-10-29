@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, NativeEventEmitter } from 'react-native';
 
 const LINKING_ERROR =
   `The package 'react-native-cloud-prevent-capture' doesn't seem to be linked. Make sure: \n\n` +
@@ -26,5 +26,8 @@ export function startPreventingRecording(): Promise<boolean> {
 export function stopPreventingRecording(): Promise<boolean> {
   return CloudPreventCapture.stopPreventingRecording();
 }
+export const CloudPreventCaptureEvents = new NativeEventEmitter(
+  CloudPreventCapture
+);
 export const { ON_SCREENSHOT, ON_SCREEN_CAPTURE } =
   CloudPreventCapture.getConstants();
