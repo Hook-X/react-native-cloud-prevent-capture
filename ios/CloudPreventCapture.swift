@@ -45,8 +45,8 @@ class CloudPreventCapture: RCTEventEmitter {
 
     @objc func stopPreventingRecording(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
       do {
-        NotificationCenter.default.removeObserver(self as! NSObject, forKeyPath: UIScreen.capturedDidChangeNotification.rawValue)
-        NotificationCenter.default.removeObserver(self as! NSObject, forKeyPath: UIApplication.userDidTakeScreenshotNotification.rawValue)
+        NotificationCenter.default.removeObserver(self, name: UIScreen.capturedDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.userDidTakeScreenshotNotification, object: nil)
         resolve(true)
       } catch let error {
         reject("STOP ERROR", "Could not stop prevent recording", error)
