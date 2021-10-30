@@ -37,13 +37,6 @@ public class CloudPreventCaptureModule extends ReactContextBaseJavaModule {
        return constants;
     }
 
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
-    @ReactMethod
-    public void multiply(int a, int b, Promise promise) {
-        promise.resolve(a * b);
-    }
-
     @ReactMethod
     public void startPreventingRecording(Promise promise) {
       getCurrentActivity().runOnUiThread(new Runnable() {

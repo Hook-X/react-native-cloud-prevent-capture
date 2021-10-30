@@ -23,13 +23,13 @@ const result = await multiply(3, 7);
 
 //Launch this on pages where yo want to prevent recording and screenshots
 try {
-  const result = await startPreventCapture();
+  const result = await startPreventingRecording();
 } catch (err) {
   console.log("%c++ START PREVENT ERROR", "background: red", err);
 }
 // When you leave secure page
 try {
-  const result = await stopPreventCapture();
+  const result = await stopPreventingRecording();
 } catch (err) {
   console.log("%c++ STOP PREVENT ERROR", "background: red", err);
 }

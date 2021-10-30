@@ -17,9 +17,8 @@ const CloudPreventCapture = NativeModules.CloudPreventCapture
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return CloudPreventCapture.multiply(a, b);
-}
+export default CloudPreventCapture;
+
 export function startPreventingRecording(): Promise<boolean> {
   return CloudPreventCapture.startPreventingRecording();
 }
