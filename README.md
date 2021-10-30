@@ -19,8 +19,6 @@ import { startPreventCapture, stopPreventCapture,
 
 // ...
 
-const result = await multiply(3, 7);
-
 //Launch this on pages where yo want to prevent recording and screenshots
 try {
   const result = await startPreventingRecording();
