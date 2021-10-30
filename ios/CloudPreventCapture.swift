@@ -18,8 +18,12 @@ class CloudPreventCapture: RCTEventEmitter {
 
     @objc func startPreventingRecording(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
       do {
-        NotificationCenter.default.addObserver(self, selector: #selector(didDetectRecording), name: UIScreen.capturedDidChangeNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didDetectScreenshot), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
+          if #available(iOS 11.0, *) {
+              NotificationCenter.default.addObserver(self, selector: #selector(didDetectRecording), name: NSNotification.Name.UIScreenCapturedDidChange, object: nil)
+          } else {
+              // Fallback on earlier versions
+          }
+          NotificationCenter.default.addObserver(self, selector: #selector(didDetectScreenshot), name: NSNotification.Name.UIApplicationUserDidTakeScreenshot, object: nil)
         resolve(true)
       } catch let error {
         reject("START ERROR", "Could not start prevent recording", error)
@@ -40,8 +44,12 @@ class CloudPreventCapture: RCTEventEmitter {
 
     @objc func stopPreventingRecording(_ resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
       do {
-        NotificationCenter.default.removeObserver(self, name: UIScreen.capturedDidChangeNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIApplication.userDidTakeScreenshotNotification, object: nil)
+          if #available(iOS 11.0, *) {
+              NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIScreenCapturedDidChange, object: nil)
+          } else {
+              // Fallback on earlier versions
+          }
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationUserDidTakeScreenshot, object: nil)
         resolve(true)
       } catch let error {
         reject("STOP ERROR", "Could not stop prevent recording", error)
