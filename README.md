@@ -11,7 +11,7 @@ npm install react-native-cloud-prevent-capture
 ## Usage
 
 ```js
-import { startPreventCapture, stopPreventCapture,
+import { startPreventingRecording, stopPreventingRecording,
   ON_SCREEN_CAPTURE,
   ON_SCREENSHOT,
   CloudPreventCaptureEvents

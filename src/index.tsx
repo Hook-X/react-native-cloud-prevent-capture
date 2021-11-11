@@ -25,6 +25,18 @@ export function startPreventingRecording(): Promise<boolean> {
 export function stopPreventingRecording(): Promise<boolean> {
   return CloudPreventCapture.stopPreventingRecording();
 }
+export function detectVolumePressed(): void {
+  return CloudPreventCapture.detectVolumePressed();
+}
+export function detectPowerPressed(): void {
+  return CloudPreventCapture.detectPowerPressed();
+}
+export function stopDetectVolumePressed(): void {
+  return CloudPreventCapture.stopDetectVolumePressed();
+}
+export function stopDetectPowerPressed(): void {
+  return CloudPreventCapture.stopDetectPowerPressed();
+}
 export const CloudPreventCaptureEvents = new NativeEventEmitter(
   CloudPreventCapture
 );

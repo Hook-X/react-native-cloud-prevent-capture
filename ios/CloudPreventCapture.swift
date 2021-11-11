@@ -1,3 +1,5 @@
+import Foundation
+import UIKit
 @objc(CloudPreventCapture)
 class CloudPreventCapture: RCTEventEmitter {
 
@@ -64,5 +66,21 @@ class CloudPreventCapture: RCTEventEmitter {
         DispatchQueue.main.async {
             self.sendEvent(withName: "ON_SCREENSHOT", body: ["isScreenShot": true])
         }
+    }
+    
+    @objc func detectVolumePressed() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didDetectScreenshot), name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
+    }
+    
+    @objc func stopDetectVolumePressed() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"), object: nil)
+    }
+    
+    @objc func detectPowerPressed() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didDetectScreenshot), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+    }
+    
+    @objc func stopDetectPowerPressed() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationWillResignActive, object: nil)  
     }
 }
