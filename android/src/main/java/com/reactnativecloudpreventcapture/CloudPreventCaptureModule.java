@@ -68,5 +68,17 @@ public class CloudPreventCaptureModule extends ReactContextBaseJavaModule {
       });
     }
 
+    @ReactMethod
+    public void detectVolumePressed() {}
+
+    @ReactMethod
+    public void detectPowerPressed() {}
+
+    @ReactMethod
+    public void stopDetectVolumePressed() {}
+
+    @ReactMethod
+    public void stopDetectPowerPressed() {}
+
     public static native int nativeMultiply(int a, int b);
 }
